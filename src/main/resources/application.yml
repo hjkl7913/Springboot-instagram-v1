@@ -1,0 +1,44 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+     charset: UTF-8
+     enabled: true
+     force: true
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/insta?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true
+    username: insta
+    password: bitc5600
+    
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: create
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      use-new-id-generator-mappings: false
+    show-sql: true # 쿼리문 콘솔창에 확인
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 2MB  #파일 업로드 용량 2MB로 제한
+
+  
+  # security 에서   아래 내용으로 로그인가능함 안걸면 해쉬비밀번호를 넣고 로그인 해야함
+  security:
+    user:
+      name: cos
+      password: 1234   
+
+# cos = yml 이 정식으로 읽는 태그가아니고 내가만든태그로 변수명이 cos 인것 찾아서 사용할수 있음
+cos:
+ secret: 겟인데어
+
+# classpath : C:/src/springwork/instagram
+file:
+  path: C:/src/springwork/instagram/src/main/resources/upload/
