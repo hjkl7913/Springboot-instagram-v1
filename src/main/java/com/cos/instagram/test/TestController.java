@@ -8,12 +8,12 @@ public class TestController {
 	
 	@GetMapping("/test/login")
 	public String test1() {
-		return "auth/login";
+		return "auth/loginForm";
 	}
 	
 	@GetMapping("/test/join")
 	public String test2() {
-		return "auth/join";
+		return "auth/joinForm";
 	}
 	
 	@GetMapping("/test/following")
