@@ -1,5 +1,6 @@
-package com.cos.instagram.domain.auth;
+package com.cos.instagram.config.auth;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -9,12 +10,11 @@ import com.cos.instagram.domain.user.User;
 
 public class PrincipalDetails implements UserDetails{
 
-	
+	private static final long serialVersionUID = 1L;
 
 	private User user;
 	
 	public PrincipalDetails(User user) {
-		super();
 		this.user = user;
 	}
 	
@@ -50,8 +50,9 @@ public class PrincipalDetails implements UserDetails{
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+		Collection<GrantedAuthority> collection = new ArrayList<GrantedAuthority>();
+		collection.add(()-> user.getRole().getKey());
+		return collection;
 	}
 		
 

@@ -36,9 +36,4 @@ public class AuthController {
 		userService.회원가입(joinReqDto);
 		return "redirect:/auth/loginForm";
 	}
-	
-	@PostMapping("/login")
-	public String login() { //validation 체크를 위해서 dto로 받는다.
-		return "redirect:/image/feed";
-	}
 }
