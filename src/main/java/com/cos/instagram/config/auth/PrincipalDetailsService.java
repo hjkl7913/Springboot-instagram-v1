@@ -20,6 +20,7 @@ public class PrincipalDetailsService implements UserDetailsService{
 	private final UserRepository userRepository;
 	
 	// Security Session > Authentication > UserDetails
+	// 정상적으로 리턴되면  @AuthenticationPrincipal 어노테이션 활성화됨.
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		log.info("loadUserByUsername : username : "+username);

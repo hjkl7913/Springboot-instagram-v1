@@ -33,7 +33,18 @@ spring:
   security:
     user:
       name: cos
-      password: 1234   
+      password: 1234  
+      
+  # 페이스북은 기본적으로 지원하기 때문에 provide 할필요 없음
+    oauth2:
+      client:
+        registration:
+          facebook:
+           client-id: 316966942878409
+           client-secret: 7d3b952c67b49eac936e338f51d1c2bd  
+           scope:
+            - email
+            - public_profile     
 
 # cos = yml 이 정식으로 읽는 태그가아니고 내가만든태그로 변수명이 cos 인것 찾아서 사용할수 있음
 cos:

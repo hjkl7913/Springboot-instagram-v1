@@ -1,14 +1,43 @@
 package com.cos.instagram.test;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cos.instagram.config.auth.PrincipalDetails;
 import com.cos.instagram.config.handler.ex.MyUsernameNotFoundException;
 
 @Controller
 public class TestController {
+	
+	//시큐리티 세션 안에 Authentication 세션이 만들어진다.
+	@GetMapping("/test/facebook")
+	public @ResponseBody String facebook(Authentication authentication ) {
+		
+		System.out.println("authentication.getDetails() : "+authentication.getDetails());
+		System.out.println("authentication.getPrincipal() : "+authentication.getPrincipal());
+		
+		OAuth2User oauth2user = (OAuth2User) authentication.getPrincipal();
+		//PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
+		
+		System.out.println("principalDetails.getUser() : "+oauth2user.getAttributes());
+		//System.out.println("principalDetails.getUser() : "+principalDetails.getUser());
+		return "facebook 로그인 완료";
+	}
+	
+	@GetMapping("/test/facebook2")
+	public @ResponseBody String facebook2(@AuthenticationPrincipal PrincipalDetails principal) {
+		
+		System.out.println("principal.getUser() : "+principal.getUser());
+		
+		return "facebook 로그인 완료2";
+	
+	}
 	
 	@GetMapping("/test/login")
 	public String test1() {
